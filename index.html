@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Family Recipes</title>
+    <link rel="stylesheet" href="style.css"> <!-- Ensure this points to your CSS file -->
+</head>
+<body>
+
+    <!-- Login Page -->
+    <div id="login-page" class="page">
+        <div class="banner">Login to Family Recipes</div>
+        <input type="email" id="email" placeholder="Email">
+        <input type="password" id="password" placeholder="Password">
+        <button class="green-button" onclick="login()">Login</button>
+    </div>
+
+    <!-- Welcome Page -->
+    <div id="welcome-page" class="page" style="display: none;">
+        <div class="banner">Welcome to Family Recipes</div>
+        <button class="green-button" onclick="showUploadPage()">Upload Recipe</button>
+        <button class="green-button" onclick="showRetrievePage()">Retrieve Recipe</button>
+        <button class="green-button" onclick="showInvitePage()">Invite Friend</button>
+        <button class="green-button" onclick="logout()">Logout</button>
+    </div>
+
+    <!-- Upload Recipe Page -->
+    <div id="upload-recipe-page" class="page" style="display: none;">
+        <div class="banner">Upload a Recipe</div>
+        <input type="file" id="recipe-photo" accept="image/*">
+        <input type="text" id="recipe-name" placeholder="Recipe Name">
+        <select id="recipe-category">
+            <option value="appetizer">Appetizer</option>
+            <option value="main">Main Dish</option>
+            <option value="side">Side Dish</option>
+            <option value="dessert">Dessert</option>
+            <option value="cocktail">Cocktail</option>
+            <option value="unclassified">Unclassified</option>
+        </select>
+        <textarea id="recipe-note" placeholder="Notes (optional)"></textarea>
+        <button class="green-button" onclick="saveRecipe()">Save</button>
+        <button class="back-button" onclick="goBack()">Back</button>
+    </div>
+
+    <!-- Retrieve Recipe Page -->
+    <div id="retrieve-recipe-page" class="page" style="display: none;">
+        <div class="banner">Retrieve a Recipe</div>
+        <input type="text" id="search-name" placeholder="Search by Recipe Name">
+        <select id="search-category">
+            <option value="all">All Categories</option>
+            <option value="appetizer">Appetizer</option>
+            <option value="main">Main Dish</option>
+            <option value="side">Side Dish</option>
+            <option value="dessert">Dessert</option>
+            <option value="cocktail">Cocktail</option>
+        </select>
+        <button class="green-button" onclick="searchRecipe()">Search</button>
+        <button class="back-button" onclick="goBack()">Back</button>
+    </div>
+
+    <!-- Invite Friend Page -->
+    <div id="invite-page" class="page" style="display: none;">
+        <div class="banner">Invite a Friend</div>
+        <input type="email" id="invite-email" placeholder="Friend's Email">
+        <button class="green-button" onclick="sendInvite()">Send Invite</button>
+        <button class="back-button" onclick="goBack()">Back</button>
+    </div>
+
+    <script src="script.js"></script> <!-- Ensure this points to your JavaScript file -->
+</body>
+</html>
