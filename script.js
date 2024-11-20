@@ -8,11 +8,17 @@ const allEvents = [
 function showPage(pageId) {
   document.querySelectorAll('.page').forEach(page => page.classList.remove('active'));
   document.getElementById(pageId).classList.add('active');
+
+  // Check if we need to render events
+  if (pageId === 'allEvents') {
+    renderEvents();
+  }
 }
 
 function renderEvents() {
   const eventList = document.getElementById('eventList');
-  eventList.innerHTML = '';
+  eventList.innerHTML = '';  // Clear current list
+
   allEvents.forEach(event => {
     const li = document.createElement('li');
     li.textContent = `${event.name} - ${event.category}`;
@@ -23,13 +29,16 @@ function renderEvents() {
 function searchEvents() {
   const category = document.getElementById('categoryDropdown').value;
   const searchInput = document.getElementById('searchInput').value.toLowerCase();
+  
+  // Filter events based on category and search input
   const filteredEvents = allEvents.filter(event =>
     (category === "" || event.category === category) &&
     event.name.toLowerCase().includes(searchInput)
   );
 
   const eventList = document.getElementById('eventList');
-  eventList.innerHTML = '';
+  eventList.innerHTML = '';  // Clear current list
+
   if (filteredEvents.length > 0) {
     filteredEvents.forEach(event => {
       const li = document.createElement('li');
@@ -42,11 +51,17 @@ function searchEvents() {
 }
 
 function logout() {
+  // Clear login and signup inputs
   document.getElementById('signupEmail').value = '';
   document.getElementById('signupPassword').value = '';
   document.getElementById('loginEmail').value = '';
   document.getElementById('loginPassword').value = '';
+
+  // Show the initial page
   showPage('page1');
 }
 
-document.getElementById('allEvents').addEventListener('click', renderEvents);
+// This will trigger the render of events when the page loads for the first time
+document.addEventListener('DOMContentLoaded', () => {
+  showPage('page1');
+});
