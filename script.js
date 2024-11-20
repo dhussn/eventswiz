@@ -1,44 +1,41 @@
-document.addEventListener("DOMContentLoaded", () => {
-  const pages = document.querySelectorAll(".page");
-  const buttons = document.querySelectorAll(".button");
-  const inputBoxes = document.querySelectorAll(".input-box");
-  
-  // Function to switch pages
-  function switchPage(targetPageId) {
-    pages.forEach(page => {
-      if (page.id === targetPageId) {
-        page.classList.add("active");
-      } else {
-        page.classList.remove("active");
-      }
-    });
+function navigate(pageId) {
+  document.querySelectorAll('.page').forEach(page => page.classList.remove('active'));
+  document.getElementById(pageId).classList.add('active');
+}
+
+function submitSignup() {
+  const email = document.getElementById('signup-email').value;
+  const password = document.getElementById('signup-password').value;
+  const zipcode = document.getElementById('signup-zipcode').value;
+  const age = document.getElementById('signup-age').value;
+  const gender = document.getElementById('signup-gender').value;
+
+  if (!email || !password || !zipcode || !age || !gender) {
+    alert('Please fill out all fields');
+    return;
   }
 
-  // Event listeners for navigation buttons
-  document.getElementById("signupBtn").addEventListener("click", () => {
-    switchPage("signupPage");
-  });
+  alert('Signup successful');
+  navigate('dashboard-page');
+}
 
-  document.getElementById("loginBtn").addEventListener("click", () => {
-    switchPage("loginPage");
-  });
+function submitLogin() {
+  const email = document.getElementById('login-email').value;
+  const password = document.getElementById('login-password').value;
 
-  document.getElementById("loginSubmitBtn").addEventListener("click", () => {
-    switchPage("homePage");
-  });
+  if (!email || !password) {
+    alert('Please fill out both fields');
+    return;
+  }
 
-  document.getElementById("backSignupBtn").addEventListener("click", () => {
-    switchPage("welcomePage");
-  });
+  alert('Login successful');
+  navigate('dashboard-page');
+}
 
-  document.getElementById("backLoginBtn").addEventListener("click", () => {
-    switchPage("welcomePage");
-  });
+function searchEvents() {
+  const category = document.getElementById('search-category').value;
+  const name = document.getElementById('search-name').value;
+  const zipcode = document.getElementById('search-zipcode').value;
 
-  document.getElementById("logoutBtn").addEventListener("click", () => {
-    // Reset all input fields
-    inputBoxes.forEach(box => (box.value = ""));
-    // Go back to the login screen
-    switchPage("loginPage");
-  });
-});
+  alert(`Searching for ${name || 'events'} in category ${category || 'all categories'} near ${zipcode || 'your location'}`);
+}
