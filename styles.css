@@ -1,3 +1,4 @@
+/* General Styling */
 body {
   font-family: Arial, sans-serif;
   margin: 0;
@@ -12,65 +13,66 @@ body {
 .page {
   display: none;
   text-align: center;
-  width: 100%;
-  max-width: 400px;
-  margin: 0 auto;
+  width: 300px;
 }
 
 .page.active {
   display: block;
 }
 
+/* Banner */
 .banner {
-  background-color: #b3d9ff;
+  background-color: #4caf50;
   color: white;
-  text-align: center;
-  padding: 20px;
-  border-radius: 5px;
-  margin-bottom: 20px;
-  width: 100%;
-  font-size: 1.5em; /* Increased font size */
+  font-size: 1.5em;
   font-weight: bold;
+  padding: 10px 0;
+  margin-bottom: 20px;
+  border-radius: 5px;
 }
 
-.input-box,
-.button {
-  width: 100%;
-  max-width: 400px; /* Matches banner width */
-  margin: 10px auto;
-  padding: 12px; /* Adjusted padding for consistency */
+/* Input Boxes */
+.input-box {
+  width: 90%;
+  padding: 10px;
+  margin: 10px 0;
+  border: 1px solid #ccc;
   border-radius: 5px;
   font-size: 1em;
 }
 
-.input-box {
-  border: 1px solid #ccc;
-}
-
 .input-box:focus {
-  border-color: #666;
+  border-color: #4caf50;
   outline: none;
 }
 
+/* Buttons */
 .button {
-  background-color: #f4d03f;
+  width: 90%;
+  padding: 10px;
+  margin: 10px 0;
+  background-color: #4caf50;
+  color: white;
   border: none;
+  border-radius: 5px;
+  font-size: 1em;
   cursor: pointer;
-  font-weight: bold;
+  font-weight: normal;
 }
 
 .button:hover {
-  background-color: #e2be3e;
+  background-color: #45a049;
 }
 
+/* Event List */
 .event-list {
-  list-style: none;
-  padding: 0;
-  margin: 0;
+  margin-top: 20px;
 }
 
-.event-list li {
-  font-size: 1.1em;
-  margin: 10px 0;
-  text-align: left;
+.event-item {
+  background-color: #f9f9f9;
+  margin: 5px 0;
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #ddd;
 }
