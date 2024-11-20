@@ -1,70 +1,73 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Events Wiz</title>
-  <link rel="stylesheet" href="styles.css">
-</head>
-<body>
-  <!-- Welcome Page -->
-  <div id="page1" class="page active">
-    <div class="banner">Events Wiz</div>
-    <button class="button" onclick="showPage('signup')">Sign Up</button>
-    <button class="button" onclick="showPage('login')">Login</button>
-  </div>
+const allEvents = [
+  { name: "Live Concert", category: "Music" },
+  { name: "Art Workshop", category: "Workshops" },
+  { name: "Food Festival", category: "Festivals" },
+  { name: "Football Match", category: "Sports" },
+  { name: "Movie Night", category: "Movies" },
+  { name: "Community Clean-up", category: "Community" },
+  { name: "Theater Play", category: "Theater" },
+];
 
-  <!-- Sign Up Page -->
-  <div id="signup" class="page">
-    <div class="banner">Sign Up</div>
-    <input type="email" id="signupEmail" class="input-box" placeholder="Email" required>
-    <input type="password" id="signupPassword" class="input-box" placeholder="Password" required>
-    <button class="button" onclick="showPage('dashboard')">Sign Up</button>
-    <button class="button" onclick="showPage('page1')">Back</button>
-  </div>
+let favoredEvents = [];
+let attendedEvents = [];
 
-  <!-- Login Page -->
-  <div id="login" class="page">
-    <div class="banner">Login</div>
-    <input type="email" id="loginEmail" class="input-box" placeholder="Email" required>
-    <input type="password" id="loginPassword" class="input-box" placeholder="Password" required>
-    <button class="button" onclick="showPage('dashboard')">Login</button>
-    <button class="button" onclick="showPage('page1')">Back</button>
-  </div>
+function showPage(pageId) {
+  document.querySelectorAll('.page').forEach(page => page.classList.remove('active'));
+  document.getElementById(pageId).classList.add('active');
+}
 
-  <!-- Dashboard Page -->
-  <div id="dashboard" class="page">
-    <div class="banner">Dashboard</div>
-    <button class="button" onclick="showPage('allEvents')">All Events</button>
-    <button class="button" onclick="showPage('searchEvents')">Search Events</button>
-    <button class="button" onclick="showPage('history')">History</button>
-    <button class="button" onclick="logout()">Logout</button>
-  </div>
+function renderEvents() {
+  const eventList = document.getElementById('allEventList');
+  eventList.innerHTML = '';
+  allEvents.forEach(event => {
+    const li = document.createElement('li');
+    li.textContent = `${event.name} - ${event.category}`;
+    const favButton = document.createElement('button');
+    favButton.textContent = "Favorite";
+    favButton.onclick = () => addToFavored(event);
+    const attendButton = document.createElement('button');
+    attendButton.textContent = "Attended";
+    attendButton.onclick = () => markAsAttended(event);
+    li.appendChild(favButton);
+    li.appendChild(attendButton);
+    eventList.appendChild(li);
+  });
+}
 
-  <!-- All Events Page -->
-  <div id="allEvents" class="page">
-    <div class="banner">All Events</div>
-    <ul id="eventList" class="event-list"></ul>
-    <button class="button" onclick="showPage('dashboard')">Back</button>
-  </div>
+function searchEvents() {
+  const category = document.getElementById('categoryDropdown').value;
+  const searchInput = document.getElementById('searchInput').value.toLowerCase();
+  const results = allEvents.filter(event => 
+    (category === "" || event.category === category) && 
+    event.name.toLowerCase().includes(searchInput)
+  );
 
-  <!-- Search Events Page -->
-  <div id="searchEvents" class="page">
-    <div class="banner">Search Events</div>
-    <select id="categoryDropdown" class="input-box">
-      <option value="">Select Category</option>
-      <option value="Music">Music</option>
-      <option value="Theater">Theater</option>
-      <option value="Workshops">Workshops</option>
-      <option value="Festivals">Festivals</option>
-      <option value="Sports">Sports</option>
-      <option value="Movies">Movies</option>
-      <option value="Community">Community</option>
-    </select>
-    <input type="text" id="searchInput" class="input-box" placeholder="Search by Name" required>
-    <button class="button" onclick="searchEvents()">Search</button>
-    <button class="button" onclick="showPage('dashboard')">Back</button>
-  </div>
-</body>
-<script src="script.js"></script>
-</html>
+  const resultList = document.getElementById('searchResults');
+  resultList.innerHTML = results.length
+    ? results.map(event => `<li>${event.name} - ${event.category}</li>`).join("")
+    : "<li>No events found</li>";
+}
+
+function addToFavored(event) {
+  if (!favoredEvents.includes(event)) {
+    favoredEvents.push(event);
+    alert("Event added to favorites!");
+  }
+}
+
+function markAsAttended(event) {
+  if (!attendedEvents.includes(event)) {
+    attendedEvents.push(event);
+    alert("Event marked as attended!");
+  }
+}
+
+function renderFavoredEvents() {
+  const list = document.getElementById('favoredEventList');
+  list.innerHTML = favoredEvents.length
+    ? favoredEvents.map(event => `<li>${event.name} - ${event.category}</li>`).join("")
+    : "<li>No favored events</li>";
+}
+
+function renderAttendedEvents() {
+  const list = document.getElementById('attendedEventList');
