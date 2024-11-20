@@ -14,6 +14,7 @@ body {
   text-align: center;
   width: 100%;
   max-width: 400px;
+  padding: 20px;
 }
 
 .page.active {
@@ -27,7 +28,7 @@ body {
   padding: 20px;
   border-radius: 5px;
   margin-bottom: 20px;
-  width: 100%;
+  width: 90%;
   font-size: 1.5em;
 }
 
@@ -48,6 +49,7 @@ body {
 .input-box:focus {
   border-color: #666;
   outline: none;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
 }
 
 .button {
@@ -71,4 +73,22 @@ body {
   font-size: 1.1em;
   margin: 10px 0;
   text-align: left;
+  padding: 10px;
+  background-color: #fff;
+  border-radius: 5px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.event-list li:hover {
+  background-color: #f1f1f1;
+}
+
+@media (max-width: 600px) {
+  .banner {
+    font-size: 1.3em;
+  }
+  .input-box,
+  .button {
+    font-size: 0.9em;
+  }
 }
