@@ -1,72 +1,89 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Family Recipes</title>
-    <link rel="stylesheet" href="style.css"> <!-- Ensure this points to your CSS file -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Events Wiz</title>
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+  <!-- Page 1: Home Screen -->
+  <div class="page active" id="home-page">
+    <div class="banner">Events Wiz</div>
+    <button class="button" onclick="navigate('signup-page')">Sign Up</button>
+    <button class="button" onclick="navigate('login-page')">Login</button>
+  </div>
 
-    <!-- Login Page -->
-    <div id="login-page" class="page">
-        <div class="banner">Login to Family Recipes</div>
-        <input type="email" id="email" placeholder="Email">
-        <input type="password" id="password" placeholder="Password">
-        <button class="green-button" onclick="login()">Login</button>
-    </div>
+  <!-- Page 2: Sign-Up Screen -->
+  <div class="page" id="signup-page">
+    <div class="banner">Welcome</div>
+    <input class="input-box" type="email" placeholder="Email" id="signup-email">
+    <input class="input-box" type="password" placeholder="Password" id="signup-password">
+    <input class="input-box" type="text" placeholder="ZIP Code" id="signup-zipcode">
+    <input class="input-box" type="number" placeholder="Age" id="signup-age">
+    <select class="input-box" id="signup-gender">
+      <option value="">Select Gender</option>
+      <option value="Male">Male</option>
+      <option value="Female">Female</option>
+      <option value="Non-binary">Non-binary</option>
+      <option value="Prefer not to say">Prefer not to say</option>
+    </select>
+    <button class="button" onclick="submitSignup()">Sign Up</button>
+    <button class="button" onclick="navigate('home-page')">Back</button>
+  </div>
 
-    <!-- Welcome Page -->
-    <div id="welcome-page" class="page" style="display: none;">
-        <div class="banner">Welcome to Family Recipes</div>
-        <button class="green-button" onclick="showUploadPage()">Upload Recipe</button>
-        <button class="green-button" onclick="showRetrievePage()">Retrieve Recipe</button>
-        <button class="green-button" onclick="showInvitePage()">Invite Friend</button>
-        <button class="green-button" onclick="logout()">Logout</button>
-    </div>
+  <!-- Page 3: Login Screen -->
+  <div class="page" id="login-page">
+    <div class="banner">Welcome</div>
+    <input class="input-box" type="email" placeholder="Email" id="login-email">
+    <input class="input-box" type="password" placeholder="Password" id="login-password">
+    <button class="button" onclick="submitLogin()">Login</button>
+    <button class="button" onclick="navigate('home-page')">Back</button>
+  </div>
 
-    <!-- Upload Recipe Page -->
-    <div id="upload-recipe-page" class="page" style="display: none;">
-        <div class="banner">Upload a Recipe</div>
-        <input type="file" id="recipe-photo" accept="image/*">
-        <input type="text" id="recipe-name" placeholder="Recipe Name">
-        <select id="recipe-category">
-            <option value="appetizer">Appetizer</option>
-            <option value="main">Main Dish</option>
-            <option value="side">Side Dish</option>
-            <option value="dessert">Dessert</option>
-            <option value="cocktail">Cocktail</option>
-            <option value="unclassified">Unclassified</option>
-        </select>
-        <textarea id="recipe-note" placeholder="Notes (optional)"></textarea>
-        <button class="green-button" onclick="saveRecipe()">Save</button>
-        <button class="back-button" onclick="goBack()">Back</button>
-    </div>
+  <!-- Page 4: Main Dashboard -->
+  <div class="page" id="dashboard-page">
+    <div class="banner">Dashboard</div>
+    <button class="button" onclick="navigate('all-events-page')">All Events</button>
+    <button class="button" onclick="navigate('search-events-page')">Search Events</button>
+    <button class="button">History</button>
+    <button class="button" onclick="navigate('home-page')">Logout</button>
+  </div>
 
-    <!-- Retrieve Recipe Page -->
-    <div id="retrieve-recipe-page" class="page" style="display: none;">
-        <div class="banner">Retrieve a Recipe</div>
-        <input type="text" id="search-name" placeholder="Search by Recipe Name">
-        <select id="search-category">
-            <option value="all">All Categories</option>
-            <option value="appetizer">Appetizer</option>
-            <option value="main">Main Dish</option>
-            <option value="side">Side Dish</option>
-            <option value="dessert">Dessert</option>
-            <option value="cocktail">Cocktail</option>
-        </select>
-        <button class="green-button" onclick="searchRecipe()">Search</button>
-        <button class="back-button" onclick="goBack()">Back</button>
-    </div>
+  <!-- Page 5: All Events -->
+  <div class="page" id="all-events-page">
+    <div class="banner">All Events</div>
+    <ul class="event-list">
+      <li>Music</li>
+      <li>Theater & Performing Arts</li>
+      <li>Workshops & Classes</li>
+      <li>Festivals & Fairs</li>
+      <li>Movies & Screenings</li>
+      <li>Sports & Fitness</li>
+      <li>Community & Charity</li>
+    </ul>
+    <button class="button" onclick="navigate('dashboard-page')">Back</button>
+  </div>
 
-    <!-- Invite Friend Page -->
-    <div id="invite-page" class="page" style="display: none;">
-        <div class="banner">Invite a Friend</div>
-        <input type="email" id="invite-email" placeholder="Friend's Email">
-        <button class="green-button" onclick="sendInvite()">Send Invite</button>
-        <button class="back-button" onclick="goBack()">Back</button>
-    </div>
+  <!-- Page 6: Search Events -->
+  <div class="page" id="search-events-page">
+    <div class="banner">Search Events</div>
+    <select class="input-box" id="search-category">
+      <option value="">Select Category</option>
+      <option value="Music">Music</option>
+      <option value="Theater">Theater & Performing Arts</option>
+      <option value="Workshops">Workshops & Classes</option>
+      <option value="Festivals">Festivals & Fairs</option>
+      <option value="Movies">Movies & Screenings</option>
+      <option value="Sports">Sports & Fitness</option>
+      <option value="Community">Community & Charity</option>
+    </select>
+    <input class="input-box" type="text" placeholder="Event Name" id="search-name">
+    <input class="input-box" type="text" placeholder="ZIP Code (optional)" id="search-zipcode">
+    <button class="button" onclick="searchEvents()">Search</button>
+    <button class="button" onclick="navigate('dashboard-page')">Back</button>
+  </div>
 
-    <script src="script.js"></script> <!-- Ensure this points to your JavaScript file -->
+  <script src="script.js"></script>
 </body>
 </html>
