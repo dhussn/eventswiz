@@ -1,41 +1,76 @@
-function navigate(pageId) {
-  document.querySelectorAll('.page').forEach(page => page.classList.remove('active'));
-  document.getElementById(pageId).classList.add('active');
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f5f5f5;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
 }
 
-function submitSignup() {
-  const email = document.getElementById('signup-email').value;
-  const password = document.getElementById('signup-password').value;
-  const zipcode = document.getElementById('signup-zipcode').value;
-  const age = document.getElementById('signup-age').value;
-  const gender = document.getElementById('signup-gender').value;
-
-  if (!email || !password || !zipcode || !age || !gender) {
-    alert('Please fill out all fields');
-    return;
-  }
-
-  alert('Signup successful');
-  navigate('dashboard-page');
+.page {
+  display: none;
+  text-align: center;
+  width: 100%;
+  max-width: 400px;
+  margin: 0 auto;
 }
 
-function submitLogin() {
-  const email = document.getElementById('login-email').value;
-  const password = document.getElementById('login-password').value;
-
-  if (!email || !password) {
-    alert('Please fill out both fields');
-    return;
-  }
-
-  alert('Login successful');
-  navigate('dashboard-page');
+.page.active {
+  display: block;
 }
 
-function searchEvents() {
-  const category = document.getElementById('search-category').value;
-  const name = document.getElementById('search-name').value;
-  const zipcode = document.getElementById('search-zipcode').value;
+.banner {
+  background-color: #b3d9ff;
+  color: white;
+  text-align: center;
+  padding: 20px;
+  border-radius: 5px;
+  margin-bottom: 20px;
+  width: 90%;
+  font-size: 1.5em; /* Increased font size */
+  font-weight: bold;
+}
 
-  alert(`Searching for ${name || 'events'} in category ${category || 'all categories'} near ${zipcode || 'your location'}`);
+.input-box,
+.button {
+  width: 100%;
+  max-width: 400px; /* Matches banner width */
+  margin: 10px auto;
+  padding: 12px; /* Adjusted padding for consistency */
+  border-radius: 5px;
+  font-size: 1em;
+}
+
+.input-box {
+  border: 1px solid #ccc;
+}
+
+.input-box:focus {
+  border-color: #666;
+  outline: none;
+}
+
+.button {
+  background-color: #f4d03f;
+  border: none;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.button:hover {
+  background-color: #e2be3e;
+}
+
+.event-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.event-list li {
+  font-size: 1.1em;
+  margin: 10px 0;
+  text-align: left;
 }
