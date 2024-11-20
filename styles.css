@@ -29,7 +29,7 @@ body {
   border-radius: 5px;
   margin-bottom: 20px;
   width: 100%;
-  font-size: 1.5em; /* Larger font for banner */
+  font-size: 1.5em; /* Increased font size */
   font-weight: bold;
 }
 
@@ -38,7 +38,7 @@ body {
   width: 100%;
   max-width: 400px; /* Matches banner width */
   margin: 10px auto;
-  padding: 12px; /* Adjusted padding */
+  padding: 12px; /* Adjusted padding for consistency */
   border-radius: 5px;
   font-size: 1em;
 }
@@ -56,7 +56,7 @@ body {
   background-color: #f4d03f;
   border: none;
   cursor: pointer;
-  font-weight: normal; /* No bold text for buttons */
+  font-weight: bold;
 }
 
 .button:hover {
