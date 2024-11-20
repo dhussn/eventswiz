@@ -1,67 +1,52 @@
-// Dummy Events Data
-const dummyEvents = [
-  { name: "Jazz Concert", category: "Music", zipcode: "10001" },
-  { name: "Art Workshop", category: "Workshops & Classes", zipcode: "10001" },
-  { name: "Book Talk", category: "Speakers & Talks", zipcode: "90001" },
+const allEvents = [
+  { name: "Live Concert", category: "Music", location: "12345" },
+  { name: "Art Workshop", category: "Workshops", location: "12345" },
+  { name: "Food Festival", category: "Festivals", location: "67890" },
+  { name: "Football Match", category: "Sports", location: "12345" },
 ];
 
-// Page Navigation
-function switchPage(pageId) {
-  document.querySelectorAll(".page").forEach(page => page.classList.remove("active"));
-  document.getElementById(pageId).classList.add("active");
+function showPage(pageId) {
+  document.querySelectorAll('.page').forEach(page => page.classList.remove('active'));
+  document.getElementById(pageId).classList.add('active');
 }
 
-// Signup Logic
-function signup() {
-  const email = document.getElementById("signupEmail").value;
-  const password = document.getElementById("signupPassword").value;
-
-  if (email && password) {
-    alert("Signup successful!");
-    switchPage("loginPage");
-  } else {
-    alert("Please fill out all fields.");
-  }
-}
-
-// Login Logic
-function login() {
-  const email = document.getElementById("loginEmail").value;
-  const password = document.getElementById("loginPassword").value;
-
-  if (email && password) {
-    alert("Login successful!");
-    switchPage("homePage");
-  } else {
-    alert("Invalid email or password.");
-  }
-}
-
-// Logout Logic
-document.getElementById("logoutBtn").addEventListener("click", () => {
-  document.querySelectorAll(".input-box").forEach(input => (input.value = ""));
-  switchPage("loginPage");
-});
-
-// Search Events
-document.getElementById("searchBtn").addEventListener("click", () => {
-  const zipcode = document.getElementById("zipcodeInput").value;
-  const category = document.getElementById("categoryDropdown").value;
-  const filteredEvents = dummyEvents.filter(event => {
-    return event.zipcode === zipcode && (!category || event.category === category);
+function renderEvents() {
+  const eventList = document.getElementById('eventList');
+  eventList.innerHTML = '';
+  allEvents.forEach(event => {
+    const li = document.createElement('li');
+    li.textContent = `${event.name} - ${event.category}`;
+    eventList.appendChild(li);
   });
+}
 
-  const eventsContainer = document.getElementById("eventsContainer");
-  eventsContainer.innerHTML = "";
+function searchEvents() {
+  const category = document.getElementById('categoryDropdown').value;
+  const searchInput = document.getElementById('searchInput').value.toLowerCase();
+  const filteredEvents = allEvents.filter(event =>
+    (category === "" || event.category === category) &&
+    event.name.toLowerCase().includes(searchInput)
+  );
 
+  const eventList = document.getElementById('eventList');
+  eventList.innerHTML = '';
   if (filteredEvents.length > 0) {
     filteredEvents.forEach(event => {
-      const eventItem = document.createElement("div");
-      eventItem.className = "event-item";
-      eventItem.textContent = `${event.name} - ${event.category}`;
-      eventsContainer.appendChild(eventItem);
+      const li = document.createElement('li');
+      li.textContent = `${event.name} - ${event.category}`;
+      eventList.appendChild(li);
     });
   } else {
-    eventsContainer.textContent = "No events found for this zipcode.";
+    eventList.innerHTML = '<li>No events found</li>';
   }
-});
+}
+
+function logout() {
+  document.getElementById('signupEmail').value = '';
+  document.getElementById('signupPassword').value = '';
+  document.getElementById('loginEmail').value = '';
+  document.getElementById('loginPassword').value = '';
+  showPage('page1');
+}
+
+document.getElementById('allEvents').addEventListener('click', renderEvents);
