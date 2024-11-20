@@ -7,70 +7,58 @@
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <!-- Page 1: Landing Page -->
-  <div id="landingPage" class="page active">
+  <div id="page1" class="page active">
     <div class="banner">Events Wiz</div>
-    <button class="button" onclick="switchPage('signupPage')">Signup</button>
-    <button class="button" onclick="switchPage('loginPage')">Login</button>
+    <button class="button" onclick="showPage('signup')">Sign Up</button>
+    <button class="button" onclick="showPage('login')">Login</button>
   </div>
 
-  <!-- Page 2: Signup Page -->
-  <div id="signupPage" class="page">
+  <div id="signup" class="page">
     <div class="banner">Welcome</div>
-    <input type="text" id="signupEmail" class="input-box" placeholder="Email">
+    <input type="email" id="signupEmail" class="input-box" placeholder="Email">
     <input type="password" id="signupPassword" class="input-box" placeholder="Password">
-    <button class="button" onclick="signup()">Signup</button>
-    <button class="button" onclick="switchPage('landingPage')">Back</button>
+    <button class="button" onclick="showPage('dashboard')">Sign Up</button>
+    <button class="button" onclick="showPage('page1')">Back</button>
   </div>
 
-  <!-- Page 2: Login Page -->
-  <div id="loginPage" class="page">
+  <div id="login" class="page">
     <div class="banner">Welcome</div>
-    <input type="text" id="loginEmail" class="input-box" placeholder="Email">
+    <input type="email" id="loginEmail" class="input-box" placeholder="Email">
     <input type="password" id="loginPassword" class="input-box" placeholder="Password">
-    <button class="button" onclick="login()">Login</button>
-    <button class="button" onclick="switchPage('landingPage')">Back</button>
+    <button class="button" onclick="showPage('dashboard')">Login</button>
+    <button class="button" onclick="showPage('page1')">Back</button>
   </div>
 
-  <!-- Page 3: Home Page -->
-  <div id="homePage" class="page">
-    <div class="banner">Events Wiz</div>
-    <button class="button" onclick="switchPage('allEventsPage')">All Events</button>
-    <button class="button" onclick="switchPage('searchPage')">Search Events</button>
-    <button class="button" onclick="switchPage('historyPage')">History</button>
-    <button class="button" id="logoutBtn">Logout</button>
+  <div id="dashboard" class="page">
+    <div class="banner">Dashboard</div>
+    <button class="button" onclick="showPage('allEvents')">All Events</button>
+    <button class="button" onclick="showPage('searchEvents')">Search Events</button>
+    <button class="button" onclick="showPage('history')">History</button>
+    <button class="button" onclick="logout()">Logout</button>
   </div>
 
-  <!-- Page 4: Search Events Page -->
-  <div id="searchPage" class="page">
-    <div class="banner">Search Events</div>
-    <input type="text" id="zipcodeInput" class="input-box" placeholder="Enter Zipcode">
-    <select id="categoryDropdown" class="input-box">
-      <option value="">All Categories</option>
-      <option value="Music">Music</option>
-      <option value="Workshops & Classes">Workshops & Classes</option>
-      <option value="Speakers & Talks">Speakers & Talks</option>
-      <option value="Family & Kids">Family & Kids</option>
-      <option value="Nightlife & Social Events">Nightlife & Social Events</option>
-    </select>
-    <button id="searchBtn" class="button">Search</button>
-    <div id="eventsContainer" class="event-list"></div>
-    <button class="button" onclick="switchPage('homePage')">Back</button>
-  </div>
-
-  <!-- Placeholder Pages -->
-  <div id="allEventsPage" class="page">
+  <div id="allEvents" class="page">
     <div class="banner">All Events</div>
-    <div id="allEventsContainer" class="event-list"></div>
-    <button class="button" onclick="switchPage('homePage')">Back</button>
+    <ul id="eventList" class="event-list"></ul>
+    <button class="button" onclick="showPage('dashboard')">Back</button>
   </div>
 
-  <div id="historyPage" class="page">
-    <div class="banner">History</div>
-    <div>No history yet!</div>
-    <button class="button" onclick="switchPage('homePage')">Back</button>
+  <div id="searchEvents" class="page">
+    <div class="banner">Search Events</div>
+    <select id="categoryDropdown" class="input-box">
+      <option value="">Select Category</option>
+      <option value="Music">Music</option>
+      <option value="Theater">Theater</option>
+      <option value="Workshops">Workshops</option>
+      <option value="Festivals">Festivals</option>
+      <option value="Sports">Sports</option>
+      <option value="Movies">Movies</option>
+      <option value="Community">Community</option>
+    </select>
+    <input type="text" id="searchInput" class="input-box" placeholder="Search by Name">
+    <button class="button" onclick="searchEvents()">Search</button>
+    <button class="button" onclick="showPage('dashboard')">Back</button>
   </div>
-
-  <script src="script.js"></script>
 </body>
+<script src="script.js"></script>
 </html>
