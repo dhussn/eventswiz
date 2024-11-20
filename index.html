@@ -7,28 +7,32 @@
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+  <!-- Welcome Page -->
   <div id="page1" class="page active">
     <div class="banner">Events Wiz</div>
     <button class="button" onclick="showPage('signup')">Sign Up</button>
     <button class="button" onclick="showPage('login')">Login</button>
   </div>
 
+  <!-- Sign Up Page -->
   <div id="signup" class="page">
-    <div class="banner">Welcome</div>
-    <input type="email" id="signupEmail" class="input-box" placeholder="Email">
-    <input type="password" id="signupPassword" class="input-box" placeholder="Password">
+    <div class="banner">Sign Up</div>
+    <input type="email" id="signupEmail" class="input-box" placeholder="Email" required>
+    <input type="password" id="signupPassword" class="input-box" placeholder="Password" required>
     <button class="button" onclick="showPage('dashboard')">Sign Up</button>
     <button class="button" onclick="showPage('page1')">Back</button>
   </div>
 
+  <!-- Login Page -->
   <div id="login" class="page">
-    <div class="banner">Welcome</div>
-    <input type="email" id="loginEmail" class="input-box" placeholder="Email">
-    <input type="password" id="loginPassword" class="input-box" placeholder="Password">
+    <div class="banner">Login</div>
+    <input type="email" id="loginEmail" class="input-box" placeholder="Email" required>
+    <input type="password" id="loginPassword" class="input-box" placeholder="Password" required>
     <button class="button" onclick="showPage('dashboard')">Login</button>
     <button class="button" onclick="showPage('page1')">Back</button>
   </div>
 
+  <!-- Dashboard Page -->
   <div id="dashboard" class="page">
     <div class="banner">Dashboard</div>
     <button class="button" onclick="showPage('allEvents')">All Events</button>
@@ -37,12 +41,14 @@
     <button class="button" onclick="logout()">Logout</button>
   </div>
 
+  <!-- All Events Page -->
   <div id="allEvents" class="page">
     <div class="banner">All Events</div>
     <ul id="eventList" class="event-list"></ul>
     <button class="button" onclick="showPage('dashboard')">Back</button>
   </div>
 
+  <!-- Search Events Page -->
   <div id="searchEvents" class="page">
     <div class="banner">Search Events</div>
     <select id="categoryDropdown" class="input-box">
@@ -55,7 +61,7 @@
       <option value="Movies">Movies</option>
       <option value="Community">Community</option>
     </select>
-    <input type="text" id="searchInput" class="input-box" placeholder="Search by Name">
+    <input type="text" id="searchInput" class="input-box" placeholder="Search by Name" required>
     <button class="button" onclick="searchEvents()">Search</button>
     <button class="button" onclick="showPage('dashboard')">Back</button>
   </div>
